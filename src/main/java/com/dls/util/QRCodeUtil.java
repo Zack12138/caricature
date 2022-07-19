@@ -246,7 +246,7 @@ public class QRCodeUtil {
         }
     }
 
-    private static String parseQRCode(BufferedImage bufferedImage) throws NotFoundException {
+    public static String parseQRCode(BufferedImage bufferedImage) throws NotFoundException {
         if (bufferedImage == null) {
             return null;
         }
