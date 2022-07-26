@@ -18,7 +18,6 @@
 package com.dls.bagua;
 
 import com.dls.util.StringUtil;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * @Package: bagua 
@@ -64,7 +63,7 @@ public enum 八卦 {
 		return index;
 	}
 
-	public @NotNull String toBinaryString(){
+	public String toBinaryString(){
 		return StringUtil.setLength(Integer.toBinaryString(index),3,'0',false);
 	}
 
