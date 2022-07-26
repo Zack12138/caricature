@@ -49,16 +49,4 @@ public class AcgRipService {
         }
         return true;
     }
-
-
-    public static void main(String[] args) {
-        Pattern pattern = Pattern.compile("简体");
-
-        System.out.println(Pattern.matches(".*?简体.*?", "【爪爪字幕组】★7月新番[莉可丽丝/Lycoris Recoil][04][1080p][简体][MP4][招募翻译校对]"));
-
-
-       // AcgRipService acgRipService = new AcgRipService();
-       // acgRipService.scan();
-    }
-
 }
