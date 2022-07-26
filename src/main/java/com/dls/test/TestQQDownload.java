@@ -25,6 +25,7 @@ public class TestQQDownload {
 
     private static void test(String url) {
         QQqunDownload down = new QQqunDownload();
+
         try {
             down.download(url,"E:\\VOL\\F\\迅雷下载\\和谐物\\图片\\2204","123");
         } catch (IOException e) {
