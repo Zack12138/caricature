@@ -85,7 +85,7 @@ public class HttpsUtil {
 			SSLContext sslcontext = SSLContext.getInstance("SSL", "SunJSSE");
 			sslcontext.init(null, new TrustManager[] { new X509TrustUtiil() }, new java.security.SecureRandom());
 			@SuppressWarnings("restriction")
-			URL url = new URL(null, httpsUrl, new sun.net.www.protocol.https.Handler());
+			URL url = new URL(null, httpsUrl);//, new sun.net.www.protocol.https.Handler()
 			HostnameVerifier ignoreHostnameVerifier = new HostnameVerifier() {
 				public boolean verify(String s, SSLSession sslsession) {
 					System.out.println("WARNING: Hostname is not matched for cert.");
@@ -94,9 +94,12 @@ public class HttpsUtil {
 			};
 			HttpsURLConnection.setDefaultHostnameVerifier(ignoreHostnameVerifier);
 			HttpsURLConnection.setDefaultSSLSocketFactory(sslcontext.getSocketFactory());
+			if("https".equalsIgnoreCase(url.getProtocol())){
+				ignoreSsl();
+			}
 			urlCon = (HttpsURLConnection) url.openConnection();
-			urlCon.setConnectTimeout(10000);
-			urlCon.setReadTimeout(10000);
+			urlCon.setConnectTimeout(120000);
+			urlCon.setReadTimeout(120000);
 			if(method == null)
 				method = RequestMethod.GET;
 			urlCon.setRequestMethod(method.getName());
@@ -169,7 +172,58 @@ public class HttpsUtil {
 			}
 		}
 	}
+
+	private static void trustAllHttpsCertificates() throws Exception {
+		TrustManager[] trustAllCerts = new TrustManager[1];
+		TrustManager tm = new miTM();
+		trustAllCerts[0] = tm;
+		SSLContext sc = SSLContext.getInstance("SSL");
+		sc.init(null, trustAllCerts, null);
+		HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+	}
+
+	static class miTM implements TrustManager,X509TrustManager {
+		public X509Certificate[] getAcceptedIssuers() {
+			return null;
+		}
+
+		public boolean isServerTrusted(X509Certificate[] certs) {
+			return true;
+		}
+
+		public boolean isClientTrusted(X509Certificate[] certs) {
+			return true;
+		}
+
+		public void checkServerTrusted(X509Certificate[] certs, String authType)
+				throws CertificateException {
+			return;
+		}
+
+		public void checkClientTrusted(X509Certificate[] certs, String authType)
+				throws CertificateException {
+			return;
+		}
+	}
+
+	/**
+	 * 忽略HTTPS请求的SSL证书，必须在openConnection之前调用
+	 * @throws Exception
+	 */
+	public static void ignoreSsl() throws Exception{
+		HostnameVerifier hv = new HostnameVerifier() {
+			public boolean verify(String urlHostName, SSLSession session) {
+				return true;
+			}
+		};
+		trustAllHttpsCertificates();
+		HttpsURLConnection.setDefaultHostnameVerifier(hv);
+	}
+
 }
+
+
+
 
 class X509TrustUtiil implements X509TrustManager {
 

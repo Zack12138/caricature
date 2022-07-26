@@ -14,6 +14,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Repository;
 
+import java.lang.reflect.Array;
+
 @SuppressWarnings({"rawtypes","unchecked"})
 @Repository
 public class SpringContextUtil implements ApplicationContextAware {
@@ -108,14 +110,11 @@ public class SpringContextUtil implements ApplicationContextAware {
     }
 
     /**
-     * <br>
      * <b>功能：</b>根据@service注解的名称获取service的bean<br>
-     * <b>作者：</b>戎伟侨<br>
-     * <b>日期：</b> 2011-4-12 <br>
      * @param <T>
      * @param clazz
      * @return
-     * @throws
+     * @throws RuntimeException
      */
 	public static <T> T getServiceByClass(Class<T> clazz) {
         String[] beanNames = applicationContext.getBeanNamesForType(clazz);
@@ -123,6 +122,25 @@ public class SpringContextUtil implements ApplicationContextAware {
             throw new RuntimeException(clazz.getName() + "类没有注解bean名");
         }
         return (T) SpringContextUtil.getBean(beanNames[0], clazz);
+    }
+
+    /**
+     * <b>功能：</b>根据@service注解的名称获取service的bean<br>
+     * @param <T>
+     * @param clazz
+     * @return
+     * @throws RuntimeException
+     */
+    public static <T> T[] getServiceByClasses(Class<T> clazz) {
+        String[] beanNames = applicationContext.getBeanNamesForType(clazz);
+        if (beanNames.length == 0) {
+            throw new RuntimeException(clazz.getName() + "类没有注解bean名");
+        }
+        T[] resule = (T[]) Array.newInstance(clazz,beanNames.length);
+        for (int i = 0;i<beanNames.length;i++) {
+            resule[i] = applicationContext.getBean(beanNames[i], clazz);
+        }
+        return resule;
     }
 }
  

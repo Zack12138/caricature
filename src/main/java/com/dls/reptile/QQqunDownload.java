@@ -44,7 +44,6 @@ import org.springframework.stereotype.Service;
 import com.dls.util.NumberUtil;
 
 @Service
-@DomainName("http://yk.th-link.cn.w.kunlunca.com/qq.php")
 public class QQqunDownload extends Reptile {
 
 	public static void main(String[] args) {
@@ -54,7 +53,7 @@ public class QQqunDownload extends Reptile {
 			try {
 				downloadPath = args[0];
 			} catch (Exception e) {
-				downloadPath = "C:\\迅雷下载\\和谐物\\2201\\qq";
+				downloadPath = "E:\\VOL\\F\\迅雷下载\\和谐物\\图片\\2201";
 			}
 			QQqunDownload down = new QQqunDownload();
 			String url = null;
@@ -108,7 +107,11 @@ public class QQqunDownload extends Reptile {
 			String savePath = target + File.separator + title + File.separator+fileName;
 			int finalI = i;
 //			String callId = url + "/" + finalI;
-
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 //			connectPropertyMap.put("Referer",callId);
 			ThreadPool.getInstance().execute(new Runnable() {
 				@Override

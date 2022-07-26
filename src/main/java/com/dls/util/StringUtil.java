@@ -27,15 +27,14 @@ public class StringUtil {
 		if (StringUtil.isBlank(src))
 			src = "";
 		StringBuilder sb = new StringBuilder(src);
-		while (true) {
-			if (sb.length() >= length)
-				return sb.substring(0,length).toString();
+		while (sb.length() < length) {
 			if (append) {
 				sb.append(ch);
 			} else {
 				sb.insert(0, ch);
 			}
 		}
+		return sb.substring(0,length).toString();
 	}
 
 	public static String setLength(String src, int length, char ch ) {

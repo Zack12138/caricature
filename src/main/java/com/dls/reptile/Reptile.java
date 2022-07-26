@@ -105,7 +105,7 @@ public abstract class Reptile {
 	protected void downloadFile(String fileUrl, String fileLocal, String filename, String callId) throws Exception {
 		SSLContext sslcontext = SSLContext.getInstance("SSL", "SunJSSE");
 		sslcontext.init(null, new TrustManager[] { new X509TrustUtiil() }, new java.security.SecureRandom());
-		URL url = new URL(null, fileUrl, new sun.net.www.protocol.https.Handler());
+		URL url = new URL(null, fileUrl);
 		HostnameVerifier ignoreHostnameVerifier = new HostnameVerifier() {
 			public boolean verify(String s, SSLSession sslsession) {
 				System.out.println("WARNING: Hostname is not matched for cert.");
