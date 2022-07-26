@@ -11,6 +11,9 @@ package com.dls.util;
 
 import java.util.regex.Pattern;
 
+/**
+ * 身份证校验工具类
+ */
 public final class IDNumberUtil {
 
 	private final static int[] arr = init();

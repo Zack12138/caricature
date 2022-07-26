@@ -22,7 +22,7 @@ public class SpringContextUtil implements ApplicationContextAware {
     /**
      * 实现ApplicationContextAware接口的回调方法，设置上下文环境
      * @param applicationContext
-     * @throws BeansException
+     * @throws
      */
     public void setApplicationContext(ApplicationContext applicationContext) {
         SpringContextUtil.applicationContext = applicationContext;
@@ -39,7 +39,7 @@ public class SpringContextUtil implements ApplicationContextAware {
      * 获取对象
      * @param name
      * @return Object 一个以所给名字注册的bean的实例
-     * @throws BeansException
+     * @throws
      */
     public static Object getBean(String name)  {
         return applicationContext.getBean(name);
@@ -51,7 +51,7 @@ public class SpringContextUtil implements ApplicationContextAware {
      * @param name bean注册名
      * @param requiredType 返回对象类型
      * @return Object 返回requiredType类型对象
-     * @throws BeansException
+     * @throws
      */
 	public static Object getBean(String name, Class requiredType) {
         return applicationContext.getBean(name, requiredType);
@@ -115,7 +115,7 @@ public class SpringContextUtil implements ApplicationContextAware {
      * @param <T>
      * @param clazz
      * @return
-     * @throws BanckException 
+     * @throws
      */
 	public static <T> T getServiceByClass(Class<T> clazz) {
         String[] beanNames = applicationContext.getBeanNamesForType(clazz);

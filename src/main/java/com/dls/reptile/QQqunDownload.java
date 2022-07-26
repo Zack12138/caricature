@@ -135,9 +135,6 @@ public class QQqunDownload extends Reptile {
 				}
 			});
 		}
-
-		ThreadPool.getInstance().shutdown();
-
 	}
 
 	private String getPassword(String url) throws IOException {

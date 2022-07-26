@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dls.util.WeCharUtil;
 
-@RequestMapping("test")
 @Controller
 public class TestContoller {
 	
@@ -14,7 +13,6 @@ public class TestContoller {
 	@RequestMapping("test")
 	@ResponseBody
 	public String test(String str) {
-		String send = WeCharUtil.send("test", str);
-		return send;
+		return str;
 	}
 }
