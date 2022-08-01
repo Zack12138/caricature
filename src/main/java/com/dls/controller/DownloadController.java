@@ -21,7 +21,7 @@ public class DownloadController {
 		String clazzpath = "com.dls.reptile." + action;
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
 		if(StringUtil.isBlank(target)){
-			target = "D:\\迅雷下载\\.和谐物\\"+sdf.format(new Date())+"\\"+action;
+			target = "D:/迅雷下载/.和谐物/"+sdf.format(new Date())+"/"+action;
 		}
 		System.out.println(url);
 

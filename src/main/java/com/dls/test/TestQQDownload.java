@@ -27,7 +27,7 @@ public class TestQQDownload {
         QQqunDownload down = new QQqunDownload();
 
         try {
-            down.download(url,"E:\\VOL\\F\\迅雷下载\\和谐物\\图片\\2204","123");
+            down.download(url,"E:/VOL/F/迅雷下载/和谐物/图片/2204","123");
         } catch (IOException e) {
             e.printStackTrace();
         }

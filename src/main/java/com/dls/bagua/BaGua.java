@@ -29,21 +29,21 @@ import com.dls.util.StringUtil;
  * @version V2.0  
  */
 
-public enum 八卦 {
-	坤("坤","☷","地",0),
-	艮("艮","☶","山",1),
-	坎("坎","☵","水",2),
-	巽("巽","☴","风",3),
-	震("震","☳","雷",4),
-	离("离","☲","火",5),
-	兑("兑","☱","泽",6),
-	乾("乾","☰","天",7);
+public enum BaGua {
+	kun("坤","☷","地",0),
+	gen("艮","☶","山",1),
+	kan("坎","☵","水",2),
+	xun("巽","☴","风",3),
+	zhen("震","☳","雷",4),
+	li("离","☲","火",5),
+	dui("兑","☱","泽",6),
+	qian("乾","☰","天",7);
 	public final String name;
 	public final String icon;
 	public final String content;
 	public final int index;
 	
-	八卦(String name, String icon,String content, int index){
+	BaGua(String name, String icon, String content, int index){
 		this.name = name;
 		this.icon = icon;
 		this.content = content;

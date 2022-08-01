@@ -1,88 +1,80 @@
-/**  
- * @Project Name:util  
- * @File Name:Aria2Option.java  
- * @Package Name:com.dls.util.aria  
- * @Date:2021年6月21日上午10:30:02  
- * Copyright (c) 2021, Zack All Rights Reserved.  
- *  
-*/
+/**
+ * @Project Name:util
+ * @File Name:Aria2Option.java
+ * @Package Name:com.dls.util.aria
+ * @Date:2021年6月21日上午10:30:02 Copyright (c) 2021, Zack All Rights Reserved.
+ */
 
 package com.dls.util.aria;
 
+import com.alibaba.fastjson.JSON;
+
+import java.util.*;
+
 public class Aria2Option {
-	String dir;
-	String out;
-	String referer;
+    private String jsonrpc = "2.0";
+    private String id;
+    private String method;
+    private List<String> params = new ArrayList<>();
 
-	public String getDir() {
-		return dir;
-	}
+    public String getJsonrpc() {
+        return jsonrpc;
+    }
 
-	public Aria2Option setDir(String dir) {
-		this.dir = dir;
-		return this;
-	}
+    public void setJsonrpc(String jsonrpc) {
+        this.jsonrpc = jsonrpc;
+    }
 
-	public String getOut() {
-		return out;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public Aria2Option setOut(String out) {
-		this.out = out;
-		return this;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public String getReferer() {
-		return referer;
-	}
+    public String getMethod() {
+        return method;
+    }
 
-	public Aria2Option setReferer(String referer) {
-		this.referer = referer;
-		return this;
-	}
+    public void setMethod(String method) {
+        this.method = method;
+    }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((dir == null) ? 0 : dir.hashCode());
-		result = prime * result + ((out == null) ? 0 : out.hashCode());
-		result = prime * result + ((referer == null) ? 0 : referer.hashCode());
-		return result;
-	}
+    public String getParam(int index) {
+        return params.get(index);
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Aria2Option other = (Aria2Option) obj;
-		if (dir == null) {
-			if (other.dir != null)
-				return false;
-		} else if (!dir.equals(other.dir))
-			return false;
-		if (out == null) {
-			if (other.out != null)
-				return false;
-		} else if (!out.equals(other.out))
-			return false;
-		if (referer == null) {
-			if (other.referer != null)
-				return false;
-		} else if (!referer.equals(other.referer))
-			return false;
-		return true;
-	}
+    public void addParam(String param) {
+        params.add(param);
+    }
 
-	@Override
-	public String toString() {
-		return String.format("Aria2Option [dir=%s, out=%s, referer=%s]", dir, out, referer);
-	}
+    public List<String> getParams() {
+        return params;
+    }
 
-	
-	
+    public void setParams(List<String> params) {
+        this.params = params;
+    }
+
+    @Override
+    public String toString() {
+        return JSON.toJSONString(this);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Aria2Option that = (Aria2Option) o;
+        return Objects.equals(jsonrpc, that.jsonrpc) &&
+                Objects.equals(id, that.id) &&
+                Objects.equals(method, that.method) &&
+                Objects.equals(params, that.params);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(jsonrpc, id, method, params);
+    }
 }

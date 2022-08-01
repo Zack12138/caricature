@@ -53,7 +53,7 @@ public class QQqunDownload extends Reptile {
 			try {
 				downloadPath = args[0];
 			} catch (Exception e) {
-				downloadPath = "E:\\VOL\\F\\迅雷下载\\和谐物\\图片\\2201";
+				downloadPath = "E:/VOL/F/迅雷下载/和谐物/图片/2201";
 			}
 			QQqunDownload down = new QQqunDownload();
 			String url = null;
